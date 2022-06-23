@@ -1,0 +1,50 @@
+--drop table empleado
+create table Empleado
+(Id_empleado Number(2) constraint Pk_empleado Primary key,
+Numrut Number (8) not null,
+DVrut Char(1)not null,
+PNombre Varchar2(30) not null,
+SNombre Varchar2(30) null,
+APPaterno varchar2(30) not null,
+APMaterno Varchar2(40) not null,
+fecha_contrato date not null,
+tipo_empleado Number(2) constraint FK_emp_tipoemp references tipo_empleado (tipo_empleado)
+);
+
+insert into Empleado (Id_empleado,numrut,DVrut,PNombre,Snombre,APPaterno,APMaterno,fecha_contrato,Tipo_empleado)
+values (3,4444444,4,'Francisco','Alejandro','Aguilar','Tapia','01/06/11',3)
+
+
+
+--drop table Tipo_Empleado
+create table tipo_Empleado 
+(tipo_empleado number(2)constraint Pk_tipo_empleado Primary key,
+desc_tipo_empleado varchar2(25)
+);
+insert into tipo_empleado (tipo_empleado,desc_tipo_empleado)
+values (1,'Administra')
+
+
+
+--drop table Ventas
+Create table Ventas
+(nro_boleta Number(8) constraint Pk_ventas Primary key,
+id_empleado number(5) references Empleado,
+fecha_boleta date,
+monto_total Number(8)
+)
+insert into Ventas (nro_boleta,id_empleado,fecha_boleta,monto_total)
+values (90,3,'02/02/2014',75000)
+
+
+
+
+--drop table Comision_ventas
+Create table Comision_ventas
+(nro_boleta number(8),
+monto_comision number(9)
+)
+
+insert into Comision_ventas (nro_boleta,monto_comision)
+values (90,9750)
+
